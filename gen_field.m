@@ -13,7 +13,6 @@ function E = gen_field(r,R,theta,phi,N,i)
     end
     E(2,1) = const*temp_val(2,1);
     E(3,1) = const*temp_val(3,1);
-    
 end
 
 function Ymll = cross_prod(M, L, r, theta, phi, P, dPx)
@@ -41,7 +40,6 @@ end
 function [P, dPx] = gen_matrix(N, x)
     P = zeros(N, N+1);
     dPx = zeros(N, N+1);
-    
     for M = 0:N
         if M == 0
             base0 = 1;
@@ -65,7 +63,6 @@ function [P, dPx] = gen_matrix(N, x)
             end 
         end    
     end
-    
     for M = 0:N
         if M == 0
             base0 = 0;
