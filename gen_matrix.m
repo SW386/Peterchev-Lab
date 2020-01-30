@@ -1,41 +1,6 @@
-function E = gen_field(r,R,theta,phi,N,i)
-    const = 1/(4*pi*10^(-7));
-    temp_val = zeros(3,1);
-    [P, dPx] = gen_matrix(N, cos(theta));
-    for L = 1:N
-        for M = -L:L
-            Ymll = cross_prod(M, L, r, theta, phi, P, dPx);
-            scalar = (i/(2*L+1))*(r/R)^L;
-            temp_val(2,1) = Ymll(2,1
-    
-end
-
-function Ymll = cross_prod(M, L, r, theta, phi, P, dPx)
-    dYml = gen_gradient(M,L,theta,phi, P,dPx);
-    rvector = zeros(3,1);
-    rvector(1,1) = (sqrt(L*(L+1)))^(-1) * r;
-    Ymll = cross(rvector, dYml);
-end
-
-function dYml = gen_gradient(M,L,theta,phi,P,dPx)
-    dYml = zeros(3,1);
-    if M > 0
-        const = sqrt((2*L+1)*factorial(L-M)/(2*pi*factorial(L+M)));
-        dYml(2,1) = const*dPx(L,M+1)*(-sin(theta))*cos(M*phi);
-        dYml(3,1) = const*P(L,M+1)*(-M*sin(M*phi));
-    elseif M == 0
-        dYml(2,1) = sqrt((2*L+1)/(4*pi))*dPx(1,1)*(-sin(theta));
-    else
-        const = -sqrt((2*L+1)*factorial(L+M)/(2*pi*factorial(L-M)));
-        dYml(2,1) = const*dPx(L,-M+1)*(-sin(theta))*sin(M*phi);
-        dYml(3,1) = const*P(L,M+1)*(M*cos(M*phi));
-    end
-end
-
 function [P, dPx] = gen_matrix(N, x)
     P = zeros(N, N+1);
     dPx = zeros(N, N+1);
-    
     for M = 0:N
         if M == 0
             base0 = 1;
@@ -59,7 +24,6 @@ function [P, dPx] = gen_matrix(N, x)
             end 
         end    
     end
-    
     for M = 0:N
         if M == 0
             base0 = 0;
@@ -68,10 +32,10 @@ function [P, dPx] = gen_matrix(N, x)
             dPx(2,M+1) = base1;
         elseif M == 1
             base0 = x*(1-x^2)^(-1/2);
-            base1 = (2*M+1)*P(M,M+1) + base0;
+            base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         else 
-            base0 = (-1)^M*prod(1:2:(2*M-1))*(x*m*(1-x^2)^(m/2+1));
-            base1 = (2*M+1)*P(M,M+1) + base0;
+            base0 = (-1)^M*prod(1:2:(2*M-1))*(-x*M*(1-x^2)^(M/2+1));
+            base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         end
         for L = 1:N
             if L == M 
@@ -84,5 +48,7 @@ function [P, dPx] = gen_matrix(N, x)
         end
     end             
 end
+
+
 
 

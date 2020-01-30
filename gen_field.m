@@ -71,10 +71,10 @@ function [P, dPx] = gen_matrix(N, x)
             dPx(2,M+1) = base1;
         elseif M == 1
             base0 = x*(1-x^2)^(-1/2);
-            base1 = (2*M+1)*P(M,M+1) + base0;
+            base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         else 
-            base0 = (-1)^M*prod(1:2:(2*M-1))*(x*M*(1-x^2)^(M/2+1));
-            base1 = (2*M+1)*P(M,M+1) + base0;
+            base0 = (-1)^M*prod(1:2:(2*M-1))*(-x*M*(1-x^2)^(M/2+1));
+            base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         end
         for L = 1:N
             if L == M 
