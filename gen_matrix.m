@@ -64,8 +64,8 @@ function [P, dPx] = gen_matrix(N, x)
         if M == 0
             base0 = 0;
             base1 = 1;
-            P(1,M+1) = base0;
-            P(2,M+1) = base1;
+            dPx(1,M+1) = base0;
+            dPx(2,M+1) = base1;
         elseif M == 1
             base0 = x*(1-x^2)^(-1/2);
             base1 = (2*M+1)*P(M,M+1) + base0;
