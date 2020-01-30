@@ -34,20 +34,24 @@ function [P, dPx] = gen_matrix(N, x)
             base0 = x*(1-x^2)^(-1/2);
             base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         else 
-            base0 = (-1)^M*prod(1:2:(2*M-1))*(-x*M*(1-x^2)^(M/2+1));
+            base0 = (-1)^M*prod(1:2:(2*M-1))*(-x*M*(1-x^2)^(M/2-1));
             base1 = (2*M+1)*P(M,M+1) + (2*M+1)*x*base0;
         end
         for L = 1:N
-            if L == M 
+            if L == M && M~=0
                 dPx(L,M+1) = base0;
             elseif L == M+1 && M~=0
                 dPx(L,M+1) = base1;
             elseif L >= 3 
-                dPx(L,M+1) = ((2*L-1)*P(L-1,M+1) + x*(2*L-1)*dPx(L-1,M+1) + (L+M-1)*dPx(L-2,M+1))/(L-M);
+                dPx(L,M+1) = ((2*L-1)*P(L-1,M+1) + x*(2*L-1)*dPx(L-1,M+1) - (L+M-1)*dPx(L-2,M+1))/(L-M);
             end 
         end
     end
 end
+
+
+
+
 
 
 
