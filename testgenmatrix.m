@@ -1,6 +1,6 @@
 function testgenmatrix
 x=.9;
-N=12;
+N=2;
 [P, dPx] = gen_matrix(N, x);
 P2=zeros(N+1,N);
 dPx2=zeros(N+1,N);
@@ -10,8 +10,8 @@ for i=0:N
 P2(i+1:(N+1),i+1)=legendrep(i,N,x);
 dPx2(i+1:(N+1),i+1)=legendrepprime(i,N,x,legendrep(i,N,x))*(1-x.^2)^(-1/2);
 end
-dPx
-dPx2
+P
+P2
 end
 
 

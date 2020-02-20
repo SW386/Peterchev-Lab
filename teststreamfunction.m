@@ -1,28 +1,17 @@
-function testymll
-N=5;
-L=2;
-M=-1;
+function teststreamfunction
+N=2;
 theta = 1;
-phi = 1;
-Y= computey(L,M,theta,phi);
-[P, dPx] = gen_matrix(N, cos(theta));
-Y = cross_prod(M, L, theta, phi, P, dPx);
-Ytheta_test  = zeros(15,62);
-Ytheta_output = zeros(15,62);
-Yphi_test  = zeros(15,62);
-Yphi_output = zeros(15,62);
+phi = 2;
+[Ypos,Yneg,Srpos,Srneg] = Yfunc2(N,theta,phi);
+test = [Srpos, Srneg];
 
-for theta=1:15:.1 
-    for phi=1:62:.1
-        Y_test = computey(L,M,theta,phi);
-        Y_output = cross_prod(M,L,theta,phi,P,dPx);
-        Ytheta_test(theta,phi) = Y_test(2);
-        Ytheta_output(theta,phi) = Y_output(2);
-        Yphi_test(theta,phi) = Y_test(3);
-        Yphi_output(theta,phi) = Y_output(3);
-    end
-end
-imagesc(Yphi_test)
+globind=@(m,l) l+1+m*(N-(m-1)/2);
+
+P=gen_matrix(N, cos(theta));
+stream_function(2,2,P,theta,phi)
+Srpos(globind(1,2))
+Srpos
+
 
 end
 
@@ -143,28 +132,6 @@ Pprime=-Pprime;%-(1-x.^2)^1/2 is negative sin
 
 end
 
-function Ymll = cross_prod(M, L, theta, phi, P, dPx)
-    dYml = gen_gradient(M,L,theta,phi,P,dPx);
-    rvector = zeros(3,1);
-    rvector(1,1) = (sqrt(L*(L+1)))^(-1);
-    Ymll = cross(rvector, dYml);
-end
-
-function dYml = gen_gradient(M,L,theta,phi,P,dPx)
-    dYml = zeros(3,1);
-    if M > 0
-        const = sqrt((2*L+1)*factorial(L-M)/(2*pi*factorial(L+M)));
-        dYml(2,1) = const*dPx(L,M+1)*(-sin(theta)*cos(M*phi));
-        dYml(3,1) = const*P(L,M+1)*(-M*sin(M*phi))/sin(theta);
-    elseif M == 0
-        dYml(2,1) = sqrt((2*L+1)/(4*pi))*dPx(L,1)*(-sin(theta));
-    else
-        const = -sqrt((2*L+1)*factorial(L+M)/(2*pi*factorial(L-M)));
-        dYml(2,1) = const*dPx(L,-M+1)*(-sin(theta))*sin(-M*phi);
-        dYml(3,1) = const*P(L,-M+1)*(-M*cos(-M*phi))/sin(theta);
-    end
-end
-
 function [P, dPx] = gen_matrix(N, x)
     P = zeros(N, N+1);
     dPx = zeros(N, N+1);
@@ -215,4 +182,3 @@ function [P, dPx] = gen_matrix(N, x)
         end
     end
 end
-
