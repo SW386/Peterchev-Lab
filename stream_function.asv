@@ -4,14 +4,10 @@ function k_matrix = stream_function(theta,phi,N,i)
     globind=@(m,l) l+1+m*(N-(m-1)/2);
     for L = 1:N
         for M = -L:L
-            if M >= 0
-              i_index = globind(M,L);
-            else
-              i_index = globind(abs(M),L)+ globind(N,N);
-            end
-            k = -1*eval(M,L,P,phi)*i(i_index)/sqrt(L*(L+1));
-            M_index = M+L+1;
-            k_matrix(L,M_index) = k;
+            k = -1*eval(M,L,P,phi)*i[
+            
+            M_index = M+L+1
+            
         end
     end
 end

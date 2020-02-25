@@ -1,5 +1,5 @@
 function teststreamfunction
-N=2;
+N=5;
 theta = 1;
 phi = 2;
 [Ypos,Yneg,Srpos,Srneg] = Yfunc2(N,theta,phi);
@@ -8,9 +8,9 @@ test = [Srpos, Srneg];
 globind=@(m,l) l+1+m*(N-(m-1)/2);
 
 P=gen_matrix(N, cos(theta));
-stream_function(2,2,P,theta,phi)
+stream_function(1,2,P,phi)
 Srpos(globind(1,2))
-Srpos
+
 
 
 end
