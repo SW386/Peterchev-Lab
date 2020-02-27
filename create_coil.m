@@ -1,4 +1,4 @@
-N = 12;
+N = 25;
 i = optimization();
 [X,Y,Z] = sphere(100);
 [az,el,r] = cart2sph(X,Y,Z);
