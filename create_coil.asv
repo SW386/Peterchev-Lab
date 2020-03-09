@@ -1,9 +1,0 @@
-theta = pi/4;
-phi = pi/4;
-N = 12;
-i = optimization();
-k_matrix = stream_function(theta,phi,N,i);
-[X Y Z] = sphere(100)
-[theta,phi,r] = cat
-        
-        
