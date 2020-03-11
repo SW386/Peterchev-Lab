@@ -36,4 +36,4 @@ for j = 1:size(Aloop,2)
     E_field(:,:,j) = E1;
 end
 
-
+save Efieldsloop.mat E_field;
