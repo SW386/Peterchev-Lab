@@ -15,7 +15,7 @@ Aloop=Arwg*Aloop(:,inodes);
 
 FEMord=1;
 reflev=0;
-load(strcat('C:\Users\Shufan Wen\Desktop\Lab\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
+load(strcat('E:\Kevin Wen\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
 E_field = zeros(3,2,size(Aloop,2));
 r = [0 0;
     0 0;
