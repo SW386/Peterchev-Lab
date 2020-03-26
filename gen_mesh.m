@@ -34,6 +34,8 @@ for j = 1:size(Aloop,2)
             ct=ct+1;
         end
     end
+    %Runcode requires addpath from TMS E-Field Solvers
+    addpath('E:\Kevin Wen\TMS_Efield_Solvers\FEM_MEX_C_codes');
     [E1,~,~,~,~]=runcode(te2p',p',conductivity,rs,js,r,FEMord);
     E_field(:,:,j) = E1;
 end
