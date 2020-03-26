@@ -1,11 +1,11 @@
 function [c,ceq] = cost_min(i)
-    r = 85;
+    r = 70;
     R = 85;
     theta = pi/10;
     phi = pi/10;
     N = 25;
     c = -energy(R,N,i);
-    ceq = 1 - norm(gen_field(r,R,theta,phi,N,i));
+    ceq = 1-norm(gen_field(r,R,theta,phi,N,i));
 end
 
 function U = energy(R,N,i)
