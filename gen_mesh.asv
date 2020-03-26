@@ -1,5 +1,4 @@
 clear all
-
 [X,Y,Z] = ndgrid(-0.16:0.01:0.16 , -0.16:0.01:0.16, 0.097);
 tri = delaunay(X,Y);
 P(:,1) = X(:);

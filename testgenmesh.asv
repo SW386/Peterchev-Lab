@@ -1,0 +1,7 @@
+load('Efieldsloop.mat');
+load(strcat('E:\Kevin Wen\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
+Efieldmap = zeros(size(E_field,3), 1);
+E_outer = squeeze(E_field(:,1,:));
+normE=sqrt(sum(E_outer.^2,1));
+Efieldmap(inodes)=normE;
+trisurf(t2p,p(:,1),p(:,2),p(:,3),Efieldmap(:))
