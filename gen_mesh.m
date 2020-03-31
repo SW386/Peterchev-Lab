@@ -1,6 +1,6 @@
 clear all
 
-[X,Y,Z] = ndgrid(-0.16:0.01:0.16 , -0.16:0.01:0.16, 0.097);
+[X,Y,Z] = ndgrid(-0.16:0.005:0.16 , -0.16:0.005:0.16, 0.097);
 tri = delaunay(X,Y);
 P(:,1) = X(:);
 P(:,2) = Y(:);
@@ -14,7 +14,7 @@ RGW=reshape(permute(RGW,[2 1 3]),[numel(tri) 3]);
 Aloop=Arwg*Aloop(:,inodes);
 [~,cc]=ndgrid(1:3,1:numel(tri)/3);
 
-FEMord=1;
+FEMord=2;
 reflev=0;
 load(strcat('E:\Kevin Wen\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
 E_field = zeros(3,2,size(Aloop,2));
