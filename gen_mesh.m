@@ -1,10 +1,12 @@
 clear all
 
-[X,Y,Z] = ndgrid(-0.16:0.005:0.16 , -0.16:0.005:0.16, 0.097);
+[X,Y,Z] = ndgrid(-0.15:0.01:0.16 , -0.15:0.01:0.16, 0.097);
 tri = delaunay(X,Y);
 P(:,1) = X(:);
 P(:,2) = Y(:);
 P(:,3) = Z(:);
+size(X)
+size(Y)
 hold on
 
 [RGW,centroid] = gen_RWG(P,tri);
