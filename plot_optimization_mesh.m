@@ -1,5 +1,5 @@
 load('Efieldsloop.mat');
-[X,Y,Z] = ndgrid(-0.16:0.005:0.16 , -0.16:0.005:0.16, 0.097);
+[X,Y,Z] = ndgrid(-0.15:0.01:0.16 , -0.15:0.01:0.16, 0.097);
 size(X)
 tri = delaunay(X,Y);
 P(:,1) = X(:);
