@@ -6,7 +6,7 @@ Nvals=size(theta);
 C=zeros(Nvals);
 for j = 1:Nvals(1)
     for k = 1:Nvals(2)
-        k_matrix = stream_function(theta(j,k),phi(j,k),N,i);
+        k_matrix = stream_function(theta(j,k),phi(j,k),25,i);
         S = sum(k_matrix, 'all');
         C(j,k) = S;
     end

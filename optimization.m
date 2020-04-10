@@ -1,5 +1,5 @@
 function i = optimization()
-x0 = zeros(1000,1);
+x0 = ones(1000,1);
 A = [];
 b = [];
 Aeq = [];

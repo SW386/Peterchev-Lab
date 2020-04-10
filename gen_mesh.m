@@ -1,6 +1,6 @@
 clear all
 
-[X,Y,Z] = ndgrid(-0.15:0.01:0.16 , -0.15:0.01:0.16, 0.097);
+[X,Y,Z] = ndgrid(-0.16:0.32/31:0.16 , -0.16:0.32/31:0.16, 0.097);
 tri = delaunay(X,Y);
 P(:,1) = X(:);
 P(:,2) = Y(:);
@@ -18,12 +18,13 @@ Aloop=Arwg*Aloop(:,inodes);
 
 FEMord=2;
 reflev=0;
-load(strcat('E:\Kevin Wen\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
+load(strcat('C:\Users\Shufan Wen\Desktop\Lab\TMS_Efield_Solvers\samplescenario',num2str(reflev),'.mat'));
 E_field = zeros(3,2,size(Aloop,2));
 r = [0 0;
     0 0;
     0.0849 0.07];
 
+addpath('C:\Users\Shufan Wen\Desktop\Lab\TMS_Efield_Solvers\FEM_MEX_C_codes');
 for j = 1:size(Aloop,2)
     ns=nnz(Aloop(:,j));
     rs=zeros([3 ns]);
@@ -37,7 +38,6 @@ for j = 1:size(Aloop,2)
         end
     end
     %Runcode requires addpath from TMS E-Field Solvers
-    addpath('E:\Kevin Wen\TMS_Efield_Solvers\FEM_MEX_C_codes');
     [E1,~,~,~,~]=runcode(te2p',p',conductivity,rs,js,r,FEMord);
     E_field(:,:,j) = E1;
 end

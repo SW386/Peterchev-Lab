@@ -1,10 +1,10 @@
 load('Efieldsloop.mat');
-[X,Y,Z] = ndgrid(-0.15:0.01:0.16 , -0.15:0.01:0.16, 0.097);
-size(X)
+[X,Y,Z] = ndgrid(-0.16:0.32/31:0.16 , -0.16:0.32/31:0.16, 0.097);
 tri = delaunay(X,Y);
 P(:,1) = X(:);
 P(:,2) = Y(:);
 P(:,3) = Z(:);
+[~,~,~,~,inodes,Aloop,Arwg,~,~,~]=extractmesharrays(tri,P);
 
 load('A_weights.mat');
 Efieldmap = zeros(size(P,1), 1);
@@ -14,7 +14,7 @@ close all;
 
 mEf=max(Efieldmap(:));
 minEf=min(Efieldmap(:));
-N = 8;
+N = 10;
 del=(mEf-minEf)/N;
 range=minEf+del/2:del:mEf-del/2;
 [cout,hout] = tricontour(P(:,1:2),tri,Efieldmap,range);

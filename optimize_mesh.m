@@ -1,3 +1,4 @@
+load('Efieldsloop.mat');
 x0 = ones(size(E_field,3),1)/2;
 A = [];
 b = [];
